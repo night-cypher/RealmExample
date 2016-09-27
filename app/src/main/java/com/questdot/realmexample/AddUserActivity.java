@@ -39,7 +39,7 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
                 if (etFirstname.getText().toString().trim().equals("") || etLastname.getText().toString().trim().equals("") || etCountry.getText().toString().trim().equals("")) {
                     Toast.makeText(this, "Entry not saved, missing some fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    RealmController.with(this).createUser(new User(etFirstname.getText().toString(), etLastname.getText().toString(), etCountry.getText().toString()));
+                    RealmController.getInstance().createUser(new User(etFirstname.getText().toString(), etLastname.getText().toString(), etCountry.getText().toString()));
                     finish();
                 }
                 break;

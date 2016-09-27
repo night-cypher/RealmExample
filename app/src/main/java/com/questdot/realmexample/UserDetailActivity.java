@@ -39,7 +39,7 @@ public class UserDetailActivity extends AppCompatActivity implements View.OnClic
         id = intent.getIntExtra("user_id", 0);
         position = intent.getIntExtra("position", 0);
 
-        user = RealmController.with(this).getUser(id);
+        user = RealmController.getInstance().getUser(id);
         etFirstname.setText(user.getFirst_name());
         etLastname.setText(user.getLast_name());
         etCountry.setText(user.getCountry());
@@ -53,7 +53,7 @@ public class UserDetailActivity extends AppCompatActivity implements View.OnClic
 
         switch (v.getId()) {
             case R.id.btn_delete:
-                RealmController.with(this).deleteUserByPosition(position);
+                RealmController.getInstance().deleteUserByPosition(position);
                 finish();
                 break;
 
@@ -61,7 +61,7 @@ public class UserDetailActivity extends AppCompatActivity implements View.OnClic
                 if (etFirstname.getText().toString().trim().equals("") || etLastname.getText().toString().trim().equals("") || etCountry.getText().toString().trim().equals("")) {
                     Toast.makeText(this, "Entry not saved, missing some fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    RealmController.with(this).updateUser(new User(id, etFirstname.getText().toString(), etLastname.getText().toString(), etCountry.getText().toString()));
+                    RealmController.getInstance().updateUser(new User(id, etFirstname.getText().toString(), etLastname.getText().toString(), etCountry.getText().toString()));
                     finish();
                 }
                 break;

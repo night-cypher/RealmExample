@@ -15,13 +15,14 @@ import android.widget.EditText;
 import java.util.ArrayList;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     RecyclerView recyclerView;
     Button btnAdd;
-    private Realm realm;
+   // private Realm realm;
     private UserAdapter adapter;
 
     @Override
@@ -35,48 +36,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAdd.setOnClickListener(this);
 
         //get realm instance
-        this.realm = RealmController.with(this).getRealm();
+      //  this.realm = RealmController.with(this).getRealm();
 
 
     }
 
     private void setRealmData() {
-//        List<User> users = new ArrayList<>();
-//
-//        User user = new User();
-//        user.setUser_id((int) (1 + System.currentTimeMillis()));
-//        user.setFirst_name("John");
-//        user.setLast_name("Doe");
-//        user.setCountry("Indonesia");
-//        users.add(user);
-//
-//        user = new User();
-//        user.setUser_id((int) (2 + System.currentTimeMillis()));
-//        user.setFirst_name("Ashtony");
-//        user.setLast_name("Doe");
-//        user.setCountry("Alaska");
-//        users.add(user);
-//
-//        user = new User();
-//        user.setUser_id((int) (3 + System.currentTimeMillis()));
-//        user.setFirst_name("Queen");
-//        user.setLast_name("Doe");
-//        user.setCountry("Caribian");
-//        users.add(user);
-//
-//        for (User b : users) {
-//            // Persist your data easily
-//            realm.beginTransaction();
-//            realm.copyToRealm(b);
-//            realm.commitTransaction();
-//        }
 
-//        Toast.makeText(this, RealmController.with(this).getUsers().size() + "", Toast.LENGTH_SHORT).show();
 
         // refresh the realm instance
-        RealmController.with(this).refresh();
+        RealmController.getInstance().refresh();
 
-        adapter = new UserAdapter(RealmController.with(this).getUsers(), this);
+        adapter = new UserAdapter(RealmController.getInstance().getUsers(), this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
